@@ -194,7 +194,7 @@ class ClientRunWithPostAndHTTPBodyTests: XCTestCase {
         super.setUp()
 
         let client = Client(baseURL: "https://my.mastodon.instance/", accessToken: "foo", session: mockSession)
-        let request = Statuses.create(status: "Hi there!", replyToID: "42", sensitive: false, visibility: .public)
+        let request = MastodonRequests.Statuses.Create(status: "Hi there!", replyToID: "42", sensitive: false, visibility: .public)
 
         client.run(request) { _ in }
     }

@@ -11,7 +11,7 @@ import XCTest
 
 class StatusesTests: XCTestCase {
     func testStatus() {
-        let request = Statuses.status(id: "42")
+        let request = MastodonRequests.Statuses.StatusBy(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses/42")
@@ -23,7 +23,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testContext() {
-        let request = Statuses.context(id: "42")
+        let request = MastodonRequests.Statuses.ContextBy(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses/42/context")
@@ -35,7 +35,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testCard() {
-        let request = Statuses.card(id: "42")
+        let request = MastodonRequests.Statuses.CardBy(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses/42/card")
@@ -47,7 +47,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testRebloggedBy() {
-        let request = Statuses.rebloggedBy(id: "42")
+        let request = MastodonRequests.Statuses.RebloggedBy(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses/42/reblogged_by")
@@ -59,7 +59,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testRebloggedByWithRange() {
-        let request = Statuses.rebloggedBy(id: "42", range: .since(id: "12", limit: 50))
+        let request = MastodonRequests.Statuses.RebloggedBy(id: "42", range: .since(id: "12", limit: 50))
         let expectedSinceID = URLQueryItem(name: "since_id", value: "12")
         let expectedLimit = URLQueryItem(name: "limit", value: "50")
 
@@ -75,7 +75,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testFavouritedBy() {
-        let request = Statuses.favouritedBy(id: "42")
+        let request = MastodonRequests.Statuses.FavouritedBy(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses/42/favourited_by")
@@ -87,7 +87,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testFavouritedByWithRange() {
-        let request = Statuses.favouritedBy(id: "42", range: .since(id: "12", limit: 50))
+        let request = MastodonRequests.Statuses.FavouritedBy(id: "42", range: .since(id: "12", limit: 50))
         let expectedSinceID = URLQueryItem(name: "since_id", value: "12")
         let expectedLimit = URLQueryItem(name: "limit", value: "50")
 
@@ -103,7 +103,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testCreateWithMessage() {
-        let request = Statuses.create(status: "The most awesome status message ever!")
+        let request = MastodonRequests.Statuses.Create(status: "The most awesome status message ever!")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses")
@@ -120,7 +120,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testCreateWithMessageAndReplyID() {
-        let request = Statuses.create(status: "The most awesome status message ever!", replyToID: "42")
+        let request = MastodonRequests.Statuses.Create(status: "The most awesome status message ever!", replyToID: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses")
@@ -138,7 +138,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testCreateWithMessageAndMediaIDs() {
-        let request = Statuses.create(status: "The most awesome status message ever!", mediaIDs: ["1", "2", "42"])
+        let request = MastodonRequests.Statuses.Create(status: "The most awesome status message ever!", mediaIDs: ["1", "2", "42"])
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses")
@@ -158,7 +158,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testCreateWithSensitiveMessage() {
-        let request = Statuses.create(status: "The most awesome status message ever!", sensitive: true)
+        let request = MastodonRequests.Statuses.Create(status: "The most awesome status message ever!", sensitive: true)
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses")
@@ -176,7 +176,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testCreateWithSpoilerMessage() {
-        let request = Statuses.create(status: "Can't believe it's an amusement park like Westworld!", spoilerText: "Last night's GoT!!!")
+        let request = MastodonRequests.Statuses.Create(status: "Can't believe it's an amusement park like Westworld!", spoilerText: "Last night's GoT!!!")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses")
@@ -194,7 +194,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testCreateWithUnlistedMessage() {
-        let request = Statuses.create(status: "The most awesome status message ever!", visibility: .unlisted)
+        let request = MastodonRequests.Statuses.Create(status: "The most awesome status message ever!", visibility: .unlisted)
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses")
@@ -211,7 +211,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testDelete() {
-        let request = Statuses.delete(id: "42")
+        let request = MastodonRequests.Statuses.Delete(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses/42")
@@ -223,7 +223,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testReblog() {
-        let request = Statuses.reblog(id: "42")
+        let request = MastodonRequests.Statuses.Reblog(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses/42/reblog")
@@ -235,7 +235,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testUnreblog() {
-        let request = Statuses.unreblog(id: "42")
+        let request = MastodonRequests.Statuses.Unreblog(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses/42/unreblog")
@@ -247,7 +247,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testFavourite() {
-        let request = Statuses.favourite(id: "42")
+        let request = MastodonRequests.Statuses.Favourite(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses/42/favourite")
@@ -259,7 +259,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testUnfavourite() {
-        let request = Statuses.unfavourite(id: "42")
+        let request = MastodonRequests.Statuses.Unfavourite(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses/42/unfavourite")
@@ -271,7 +271,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testPin() {
-        let request = Statuses.pin(id: "42")
+        let request = MastodonRequests.Statuses.Pin(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses/42/pin")
@@ -283,7 +283,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testUnpin() {
-        let request = Statuses.unpin(id: "42")
+        let request = MastodonRequests.Statuses.Unpin(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses/42/unpin")
@@ -295,7 +295,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testMute() {
-        let request = Statuses.mute(id: "42")
+        let request = MastodonRequests.Statuses.Mute(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses/42/mute")
@@ -307,7 +307,7 @@ class StatusesTests: XCTestCase {
     }
 
     func testUnmute() {
-        let request = Statuses.unmute(id: "42")
+        let request = MastodonRequests.Statuses.Unmute(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/statuses/42/unmute")
