@@ -13,7 +13,6 @@ extension MastodonRequests {
     public enum Instances {
         /// Gets instance information.
         open class Current: RequestBase<Instance> {
-            /// - Returns: Request for `Instance`.
             public init() {
                 super.init(path: "/api/v1/instance")
             }
@@ -21,7 +20,6 @@ extension MastodonRequests {
 
         /// Fetches current instance's custom emojis.
         open class CustomEmojis: RequestBase<[Emoji]> {
-            /// - Returns: Request for `[Emoji]`.
             public init() {
                 super.init(path: "/api/v1/custom_emojis")
             }

@@ -13,7 +13,6 @@ extension MastodonRequests {
     public enum Lists {
         /// Retrieves lists.
         open class All: RequestBase<[List]> {
-            /// - Returns: Request for `[List]`.
             public init()  {
                 super.init(path: "/api/v1/lists")
             }
@@ -67,7 +66,7 @@ extension MastodonRequests {
         open class Add: RequestBase<Empty> {
             /// - Parameters:
             ///   - accountIDs: The account IDs to be added to the list.
-            ///   - id: The list ID>
+            ///   - id: The list ID.
             public init(accountIDs: [String], toList id: String) {
                 let parameter = accountIDs.map(toArrayOfParameters(withName: "account_ids"))
                 super.init(path: "/api/v1/lists/\(id)/accounts", method: .post(.parameters(parameter)))
@@ -78,7 +77,7 @@ extension MastodonRequests {
         open class Remove: RequestBase<Empty> {
             /// - Parameters:
             ///   - accountIDs: The account IDs to be removed from the list.
-            ///   - id: The list ID>
+            ///   - id: The list ID.
             public init(accountIDs: [String], fromList id: String) {
                 let parameter = accountIDs.map(toArrayOfParameters(withName: "account_ids"))
                 super.init(path: "/api/v1/lists/\(id)/accounts", method: .delete(.parameters(parameter)))

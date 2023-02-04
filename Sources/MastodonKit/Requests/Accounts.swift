@@ -98,7 +98,6 @@ extension MastodonRequests {
         /// Follows an account.
         open class Follow: RequestBase<Relationship> {
             /// - Parameter id: The account id.
-            /// - Returns: Request for `Account`.
             public init(id: String) {
                 super.init(path: "/api/v1/accounts/\(id)/follow", method: .post(.empty))
             }
@@ -168,7 +167,6 @@ extension MastodonRequests {
             ///   - query: What to search for.
             ///   - limit: Maximum number of matching accounts to return (default: 40).
             ///   - following: Limit the search to following (default: false).
-            /// - Returns: Request for `[Account]`.
             public init(query: String, limit: Int? = nil, following: Bool? = nil) {
                 let toLimitBounds = between(1, and: 80, default: 40)
                 let parameters = [
