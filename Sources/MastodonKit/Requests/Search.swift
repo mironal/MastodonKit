@@ -8,21 +8,21 @@
 
 import Foundation
 
-/// `Search` requests.
-public enum Search {
-    /// Searches for content.
-    ///
-    /// - Parameters:
-    ///   - query: The search query.
-    ///   - resolve: Whether to resolve non-local accounts.
-    /// - Returns: Request for `Results`.
-    public static func search(query: String, resolve: Bool? = nil) -> Request<Results> {
-        let parameters = [
-            Parameter(name: "q", value: query),
-            Parameter(name: "resolve", value: resolve.flatMap(trueOrNil))
-        ]
-
-        let method = HTTPMethod.get(.parameters(parameters))
-        return Request<Results>(path: "/api/v1/search", method: method)
+extension MastodonRequests {
+    /// `Search` requests.
+    public enum Search {
+        /// Searches for content.
+        open class Search: RequestBase<Results> {
+            /// - Parameters:
+            ///   - query: The search query.
+            ///   - resolve: Whether to resolve non-local accounts.
+            public init(query: String, resolve: Bool? = nil) {
+                let parameters = [
+                    Parameter(name: "q", value: query),
+                    Parameter(name: "resolve", value: resolve.flatMap(trueOrNil))
+                ]
+                super.init(path: "/api/v1/search", method: .get(.parameters(parameters)))
+            }
+        }
     }
 }

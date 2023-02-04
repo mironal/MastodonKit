@@ -226,7 +226,7 @@ class ClientRunWithGetAndQueryItemsTests: XCTestCase {
         super.setUp()
 
         let client = Client(baseURL: "https://my.mastodon.instance/", accessToken: "bär", session: mockSession)
-        let request = Search.search(query: "MastodonKit", resolve: false)
+        let request = MastodonRequests.Search.Search(query: "MastodonKit", resolve: false)
 
         client.run(request) { _ in }
     }
