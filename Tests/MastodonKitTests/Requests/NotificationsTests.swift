@@ -38,8 +38,8 @@ class NotificationsTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
     }
 
-    func testNotification() {
-        let request = MastodonRequests.Notifications.Notification(id: "42")
+    func testGet() {
+        let request = MastodonRequests.Notifications.Get(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/notifications/42")

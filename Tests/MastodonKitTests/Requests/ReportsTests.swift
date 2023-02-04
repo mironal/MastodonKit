@@ -22,8 +22,8 @@ class ReportsTests: XCTestCase {
         XCTAssertNil(request.method.httpBody)
     }
 
-    func testReport() {
-        let request = MastodonRequests.Reports.Report(accountID: "40",
+    func testCreate() {
+        let request = MastodonRequests.Reports.Create(accountID: "40",
                                                       statusIDs: ["4", "2", "42"],
                                                       reason: "Westworld Spoiler!!!")
 

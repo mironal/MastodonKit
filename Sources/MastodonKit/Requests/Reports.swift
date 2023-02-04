@@ -12,14 +12,14 @@ extension MastodonRequests {
     /// `Reports` requests.
     public enum Reports {
         /// Fetches a user's reports.
-        open class All: RequestBase<[MastodonKit.Report]> {
+        open class All: RequestBase<[Report]> {
             public init() {
                 super.init(path: "/api/v1/reports")
             }
         }
 
         /// Reports a user.
-        open class Report: RequestBase<MastodonKit.Report> {
+        open class Create: RequestBase<Report> {
             /// - Parameters:
             ///   - accountID: The ID of the account to report.
             ///   - statusIDs: The IDs of statuses to report.

@@ -34,8 +34,8 @@ class ListsTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
     }
 
-    func testList() {
-        let request = MastodonRequests.Lists.List(id: "42")
+    func testGet() {
+        let request = MastodonRequests.Lists.Get(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/lists/42")

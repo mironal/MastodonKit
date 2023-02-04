@@ -12,7 +12,7 @@ extension MastodonRequests {
     /// `Notifications` requests.
     public enum Notifications {
         /// Fetches a user's notifications.
-        open class All: RequestBase<[MastodonKit.Notification]> {
+        open class All: RequestBase<[Notification]> {
             /// - Parameter range: The bounds used when requesting data from Mastodon.
             public init(range: RequestRange = .default) {
                 let parameters = range.parameters(limit: between(1, and: 15, default: 30))
@@ -21,7 +21,7 @@ extension MastodonRequests {
         }
 
         /// Gets a single notification.
-        open class Notification: RequestBase<MastodonKit.Notification> {
+        open class Get: RequestBase<Notification> {
             /// - Parameter id: The notification id.
             public init(id: String) {
                 super.init(path: "/api/v1/notifications/\(id)")

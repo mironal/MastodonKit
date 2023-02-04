@@ -12,7 +12,7 @@ extension MastodonRequests {
     /// `Lists` requests.
     public enum Lists {
         /// Retrieves lists.
-        open class All: RequestBase<[MastodonKit.List]> {
+        open class All: RequestBase<[List]> {
             /// - Returns: Request for `[List]`.
             public init()  {
                 super.init(path: "/api/v1/lists")
@@ -28,7 +28,7 @@ extension MastodonRequests {
         }
 
         /// Retrieves a list.
-        open class List: RequestBase<MastodonKit.List> {
+        open class Get: RequestBase<List> {
             /// - Parameter id: The list ID.
             public init(id: String) {
                 super.init(path: "/api/v1/lists/\(id)")
@@ -36,7 +36,7 @@ extension MastodonRequests {
         }
 
         /// Creates a list.
-        open class Create: RequestBase<MastodonKit.List> {
+        open class Create: RequestBase<List> {
             /// - Parameter title: The title of the list.
             public init(title: String) {
                 let parameter = [Parameter(name: "title", value: title)]
@@ -45,7 +45,7 @@ extension MastodonRequests {
         }
 
         /// Updates the list title.
-        open class Update: RequestBase<MastodonKit.List> {
+        open class Update: RequestBase<List> {
             /// - Parameters:
             ///   - id: The list ID.
             ///   - title: The title of the list.
