@@ -8,59 +8,57 @@
 
 import Foundation
 
-/// `Login` requests.
-public enum Login {
-    /// Performs a silent login.
-    ///
-    /// - Parameters:
-    ///   - clientID: The client ID.
-    ///   - clientSecret: The client secret.
-    ///   - scopes: The access scopes.
-    ///   - username: The user's username or e-mail address.
-    ///   - password: The user's password.
-    /// - Returns: Request for `LoginSettings`.
-    public static func silent(clientID: String,
-                              clientSecret: String,
-                              scopes: [AccessScope],
-                              username: String,
-                              password: String) -> Request<LoginSettings> {
-        let parameters = [
-            Parameter(name: "client_id", value: clientID),
-            Parameter(name: "client_secret", value: clientSecret),
-            Parameter(name: "scope", value: scopes.map(toString).joined(separator: " ")),
-            Parameter(name: "grant_type", value: "password"),
-            Parameter(name: "username", value: username),
-            Parameter(name: "password", value: password)
-        ]
+extension MastodonRequests {
+    /// `Login` requests.
+    public enum Login {
+        /// Performs a silent login.
+        open class Silent: RequestBase<LoginSettings> {
+            /// - Parameters:
+            ///   - clientID: The client ID.
+            ///   - clientSecret: The client secret.
+            ///   - scopes: The access scopes.
+            ///   - username: The user's username or e-mail address.
+            ///   - password: The user's password.
+            public init(clientID: String,
+                        clientSecret: String,
+                        scopes: [AccessScope],
+                        username: String,
+                        password: String) {
+                let parameters = [
+                    Parameter(name: "client_id", value: clientID),
+                    Parameter(name: "client_secret", value: clientSecret),
+                    Parameter(name: "scope", value: scopes.map(toString).joined(separator: " ")),
+                    Parameter(name: "grant_type", value: "password"),
+                    Parameter(name: "username", value: username),
+                    Parameter(name: "password", value: password)
+                ]
+                super.init(path: "/oauth/token", method: .post(.parameters(parameters)))
+            }
+        }
 
-        let method = HTTPMethod.post(.parameters(parameters))
-        return Request<LoginSettings>(path: "/oauth/token", method: method)
-    }
-
-    /// Completes an OAuth login.
-    ///
-    /// - Parameters:
-    ///   - clientID: The client ID.
-    ///   - clientSecret: The client secret.
-    ///   - scopes: The access scopes.
-    ///   - redirectURI: The client redirectURI.
-    ///   - code: The authorization code.
-    /// - Returns: Request for `LoginSettings`.
-    public static func oauth(clientID: String,
-                             clientSecret: String,
-                             scopes: [AccessScope],
-                             redirectURI: String,
-                             code: String) -> Request<LoginSettings> {
-        let parameters = [
-            Parameter(name: "client_id", value: clientID),
-            Parameter(name: "client_secret", value: clientSecret),
-            Parameter(name: "scope", value: scopes.map(toString).joined(separator: " ")),
-            Parameter(name: "grant_type", value: "authorization_code"),
-            Parameter(name: "redirect_uri", value: redirectURI),
-            Parameter(name: "code", value: code)
-        ]
-
-        let method = HTTPMethod.post(.parameters(parameters))
-        return Request<LoginSettings>(path: "/oauth/token", method: method)
+        /// Completes an OAuth login.
+        open class OAuth: RequestBase<LoginSettings> {
+            /// - Parameters:
+            ///   - clientID: The client ID.
+            ///   - clientSecret: The client secret.
+            ///   - scopes: The access scopes.
+            ///   - redirectURI: The client redirectURI.
+            ///   - code: The authorization code.
+            public init(clientID: String,
+                        clientSecret: String,
+                        scopes: [AccessScope],
+                        redirectURI: String,
+                        code: String) {
+                let parameters = [
+                    Parameter(name: "client_id", value: clientID),
+                    Parameter(name: "client_secret", value: clientSecret),
+                    Parameter(name: "scope", value: scopes.map(toString).joined(separator: " ")),
+                    Parameter(name: "grant_type", value: "authorization_code"),
+                    Parameter(name: "redirect_uri", value: redirectURI),
+                    Parameter(name: "code", value: code)
+                ]
+                super.init(path: "/oauth/token", method: .post(.parameters(parameters)))
+            }
+        }
     }
 }
