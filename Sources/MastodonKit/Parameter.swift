@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct Parameter {
-    let name: String
-    let value: String?
+public struct Parameter {
+    public let name: String
+    public let value: String?
 }
 
 // MARK: - Equatable

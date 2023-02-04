@@ -8,11 +8,17 @@
 
 import Foundation
 
-public struct Request<Model: Codable> {
-    let path: String
-    let method: HTTPMethod
+public protocol RequestProtocol {
+    associatedtype Model: Decodable
+    var path: String { get }
+    var method: HTTPMethod { get }
+}
 
-    init(path: String, method: HTTPMethod = .get(.empty)) {
+public struct Request<Model: Codable>: RequestProtocol {
+    public let path: String
+    public let method: HTTPMethod
+
+    public init(path: String, method: HTTPMethod = .get(.empty)) {
         self.path = path
         self.method = method
     }

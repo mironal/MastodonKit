@@ -26,11 +26,11 @@ public protocol ClientType {
     ///   - request: The request to be performed.
     ///   - completion: The completion block to be called when the request is complete.
     ///   - result: The request result.
-    func run<Model>(_ request: Request<Model>,
-                    completion: @escaping (_ result: Result<Response<Model>, Error>) -> Void)
+    func run<Request: RequestProtocol>(_ request: Request,
+                                       completion: @escaping (_ result: Result<Response<Request.Model>, Error>) -> Void)
 
 #if compiler(>=5.5) && canImport(_Concurrency)
     @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-    func run<Model>(_ request: Request<Model>) async throws -> Response<Model>
+    func run<Request: RequestProtocol>(_ request: Request) async throws -> Response<Request.Model>
 #endif
 }

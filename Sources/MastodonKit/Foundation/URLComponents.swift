@@ -9,7 +9,7 @@
 import Foundation
 
 extension URLComponents {
-    init?<A>(baseURL: String, request: Request<A>) {
+    init?<Request: RequestProtocol>(baseURL: String, request: Request) {
         guard
             let realBaseURL = URL(string: baseURL),
             let completeURL = URL(string: request.path, relativeTo: realBaseURL)

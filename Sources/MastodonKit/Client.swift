@@ -19,8 +19,8 @@ public struct Client: ClientType {
         self.accessToken = accessToken
     }
 
-    public func run<Model>(_ request: Request<Model>,
-                           completion: @escaping (Result<Response<Model>, Error>) -> Void) {
+    public func run<Request: RequestProtocol>(_ request: Request,
+                                              completion: @escaping (Result<Response<Request.Model>, Error>) -> Void) {
         guard
             let components = URLComponents(baseURL: baseURL, request: request),
             let url = components.url
@@ -51,7 +51,7 @@ public struct Client: ClientType {
                 return
             }
 
-            guard let model = try? Model.decode(data: data) else {
+            guard let model = try? Request.Model.decode(data: data) else {
                 completion(.failure(ClientError.invalidModel))
                 return
             }
@@ -64,7 +64,7 @@ public struct Client: ClientType {
 
 #if compiler(>=5.6.0) && canImport(_Concurrency)
     @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-    public func run<Model>(_ request: Request<Model>) async throws -> Response<Model> {
+    public func run<Request: RequestProtocol>(_ request: Request) async throws -> Response<Request.Model> {
         try await withCheckedThrowingContinuation { continuation in
             run(request) { result in
                 continuation.resume(with: result)
