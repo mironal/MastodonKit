@@ -8,45 +8,41 @@
 
 import Foundation
 
-/// `Timelines` requests.
-public enum Timelines {
-    /// Retrieves the home timeline.
-    ///
-    /// - Parameter range: The bounds used when requesting data from Mastodon.
-    /// - Returns: Request for `[Status]`.
-    public static func home(range: RequestRange = .default) -> Request<[Status]> {
-        let parameters = range.parameters(limit: between(1, and: 40, default: 20))
-        let method = HTTPMethod.get(.parameters(parameters))
+extension MastodonRequests {
+    /// `Timelines` requests.
+    public enum Timelines {
+        /// Retrieves the home timeline.
+        open class Home: RequestBase<[Status]> {
+            /// - Parameter range: The bounds used when requesting data from Mastodon.
+            public init(range: RequestRange = .default) {
+                let parameters = range.parameters(limit: between(1, and: 40, default: 20))
+                super.init(path: "/api/v1/timelines/home", method: .get(.parameters(parameters)))
+            }
+        }
 
-        return Request<[Status]>(path: "/api/v1/timelines/home", method: method)
-    }
+        /// Retrieves the public timeline.
+        open class Public: RequestBase<[Status]> {
+            /// - Parameters:
+            ///   - local: Only return statuses originating from this instance.
+            ///   - range: The bounds used when requesting data from Mastodon.
+            public init(local: Bool? = nil, range: RequestRange = .default) {
+                let rangeParameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
+                let localParameter = [Parameter(name: "local", value: local.flatMap(trueOrNil))]
+                super.init(path: "/api/v1/timelines/public", method: .get(.parameters(localParameter + rangeParameters)))
+            }
+        }
 
-    /// Retrieves the public timeline.
-    ///
-    /// - Parameters:
-    ///   - local: Only return statuses originating from this instance.
-    ///   - range: The bounds used when requesting data from Mastodon.
-    /// - Returns: Request for `[Status]`.
-    public static func `public`(local: Bool? = nil, range: RequestRange = .default) -> Request<[Status]> {
-        let rangeParameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
-        let localParameter = [Parameter(name: "local", value: local.flatMap(trueOrNil))]
-        let method = HTTPMethod.get(.parameters(localParameter + rangeParameters))
-
-        return Request<[Status]>(path: "/api/v1/timelines/public", method: method)
-    }
-
-    /// Retrieves a tag timeline.
-    ///
-    /// - Parameters:
-    ///   - hashtag: The hashtag.
-    ///   - local: Only return statuses originating from this instance.
-    ///   - range: The bounds used when requesting data from Mastodon.
-    /// - Returns: Request for `[Status]`.
-    public static func tag(_ hashtag: String, local: Bool? = nil, range: RequestRange = .default) -> Request<[Status]> {
-        let rangeParameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
-        let localParameter = [Parameter(name: "local", value: local.flatMap(trueOrNil))]
-        let method = HTTPMethod.get(.parameters(localParameter + rangeParameters))
-
-        return Request<[Status]>(path: "/api/v1/timelines/tag/\(hashtag)", method: method)
+        /// Retrieves a tag timeline.
+        open class Tag: RequestBase<[Status]> {
+            /// - Parameters:
+            ///   - hashtag: The hashtag.
+            ///   - local: Only return statuses originating from this instance.
+            ///   - range: The bounds used when requesting data from Mastodon.
+            public init(_ hashtag: String, local: Bool? = nil, range: RequestRange = .default) {
+                let rangeParameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
+                let localParameter = [Parameter(name: "local", value: local.flatMap(trueOrNil))]
+                super.init(path: "/api/v1/timelines/tag/\(hashtag)", method: .get(.parameters(localParameter + rangeParameters)))
+            }
+        }
     }
 }

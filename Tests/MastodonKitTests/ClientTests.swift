@@ -40,7 +40,7 @@ class ClientInitializationWithInvalidURLTests: XCTestCase {
         let client = Client(baseURL: "42 is the answer but isn't a valid URL", session: mockSession)
         var passedError: Error?
 
-        client.run(Timelines.home()) { result in
+        client.run(MastodonRequests.Timelines.Home()) { result in
             switch result {
             case .success:
                 XCTFail("")
@@ -61,7 +61,7 @@ class ClientRunTests: XCTestCase {
         super.setUp()
 
         let client = Client(baseURL: "https://my.mastodon.instance/", accessToken: "foo", session: mockSession)
-        let request = Timelines.home()
+        let request = MastodonRequests.Timelines.Home()
 
         client.run(request) { result in
             self.result = result
@@ -166,7 +166,7 @@ class ClientRunWithoutAccessTokenTests: XCTestCase {
         super.setUp()
 
         let client = Client(baseURL: "https://my.mastodon.instance/", session: mockSession)
-        let request = Timelines.public(local: true)
+        let request = MastodonRequests.Timelines.Public(local: true)
 
         client.run(request) { _ in }
     }
