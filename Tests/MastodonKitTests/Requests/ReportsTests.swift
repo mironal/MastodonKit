@@ -11,7 +11,7 @@ import XCTest
 
 class ReportsTests: XCTestCase {
     func testAll() {
-        let request = Reports.all()
+        let request = MastodonRequests.Reports.All()
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/reports")
@@ -23,9 +23,9 @@ class ReportsTests: XCTestCase {
     }
 
     func testReport() {
-        let request = Reports.report(accountID: "40",
-                                     statusIDs: ["4", "2", "42"],
-                                     reason: "Westworld Spoiler!!!")
+        let request = MastodonRequests.Reports.Report(accountID: "40",
+                                                      statusIDs: ["4", "2", "42"],
+                                                      reason: "Westworld Spoiler!!!")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/reports")

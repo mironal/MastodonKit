@@ -8,29 +8,29 @@
 
 import Foundation
 
-/// `Reports` requests.
-public enum Reports {
-    /// Fetches a user's reports.
-    ///
-    /// - Returns: Request for `[Report]`.
-    public static func all() -> Request<[Report]> {
-        return Request<[Report]>(path: "/api/v1/reports")
-    }
+extension MastodonRequests {
+    /// `Reports` requests.
+    public enum Reports {
+        /// Fetches a user's reports.
+        open class All: RequestBase<[MastodonKit.Report]> {
+            public init() {
+                super.init(path: "/api/v1/reports")
+            }
+        }
 
-    /// Reports a user.
-    ///
-    /// - Parameters:
-    ///   - accountID: The ID of the account to report.
-    ///   - statusIDs: The IDs of statuses to report.
-    ///   - reason: A comment to associate with the report.
-    /// - Returns: Request for `Report`.
-    public static func report(accountID: String, statusIDs: [String], reason: String) -> Request<Report> {
-        let parameters = [
-            Parameter(name: "account_id", value: accountID),
-            Parameter(name: "comment", value: reason)
-            ] + statusIDs.map(toArrayOfParameters(withName: "status_ids"))
-
-        let method = HTTPMethod.post(.parameters(parameters))
-        return Request<Report>(path: "/api/v1/reports", method: method)
+        /// Reports a user.
+        open class Report: RequestBase<MastodonKit.Report> {
+            /// - Parameters:
+            ///   - accountID: The ID of the account to report.
+            ///   - statusIDs: The IDs of statuses to report.
+            ///   - reason: A comment to associate with the report.
+            public init(accountID: String, statusIDs: [String], reason: String) {
+                let parameters = [
+                    Parameter(name: "account_id", value: accountID),
+                    Parameter(name: "comment", value: reason)
+                ] + statusIDs.map(toArrayOfParameters(withName: "status_ids"))
+                super.init(path: "/api/v1/reports", method: .post(.parameters(parameters)))
+            }
+        }
     }
 }
