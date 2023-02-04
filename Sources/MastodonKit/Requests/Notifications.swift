@@ -21,7 +21,7 @@ extension MastodonRequests {
         }
 
         /// Gets a single notification.
-        open class Get: RequestBase<Notification> {
+        open class NotificationBy: RequestBase<Notification> {
             /// - Parameter id: The notification id.
             public init(id: String) {
                 super.init(path: "/api/v1/notifications/\(id)")

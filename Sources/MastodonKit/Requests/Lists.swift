@@ -28,7 +28,7 @@ extension MastodonRequests {
         }
 
         /// Retrieves a list.
-        open class Get: RequestBase<List> {
+        open class ListBy: RequestBase<List> {
             /// - Parameter id: The list ID.
             public init(id: String) {
                 super.init(path: "/api/v1/lists/\(id)")
