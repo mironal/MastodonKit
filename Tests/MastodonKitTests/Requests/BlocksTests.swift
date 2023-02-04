@@ -11,7 +11,7 @@ import XCTest
 
 class BlocksTests: XCTestCase {
     func testAll() {
-        let request = Blocks.all()
+        let request = MastodonRequests.Blocks.All()
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/blocks")
@@ -23,7 +23,7 @@ class BlocksTests: XCTestCase {
     }
 
     func testAllWithRange() {
-        let request = Blocks.all(range: .max(id: "42", limit: nil))
+        let request = MastodonRequests.Blocks.All(range: .max(id: "42", limit: nil))
         let expectedMaxID = URLQueryItem(name: "max_id", value: "42")
 
         // Endpoint
