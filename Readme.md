@@ -18,7 +18,7 @@ There are the following differences compared to the original.
   - This makes it easy to define specific API requests as variables and arguments.
 
 ```swift
-// Orifinal
+// Original
 let request = Statuses.create(status: "Mastodon's API is awesome!")
 let request2 = Statuses.favourite(id: "1")
 doSomethingForCreateRequest(request)
