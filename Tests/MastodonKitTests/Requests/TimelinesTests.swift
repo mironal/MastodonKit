@@ -11,7 +11,7 @@ import XCTest
 
 class TimelinesTests: XCTestCase {
     func testHomeTimeline() {
-        let request = Timelines.home()
+        let request = Requests.Timelines.Home()
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/timelines/home")
@@ -23,7 +23,7 @@ class TimelinesTests: XCTestCase {
     }
 
     func testHomeTimelineWithRange() {
-        let request = Timelines.home(range: .limit(32))
+        let request = Requests.Timelines.Home(range: .limit(32))
         let expectedLimit = URLQueryItem(name: "limit", value: "32")
 
         // Endpoint
@@ -37,7 +37,7 @@ class TimelinesTests: XCTestCase {
     }
 
     func testPublicTimelineLocal() {
-        let request = Timelines.public(local: true)
+        let request = Requests.Timelines.Public(local: true)
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/timelines/public")
@@ -49,7 +49,7 @@ class TimelinesTests: XCTestCase {
     }
 
     func testPublicTimelineFederated() {
-        let request = Timelines.public()
+        let request = Requests.Timelines.Public()
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/timelines/public")
@@ -61,7 +61,7 @@ class TimelinesTests: XCTestCase {
     }
 
     func testPublicTimelineLocalWithRange() {
-        let request = Timelines.public(local: true, range: .since(id: "420", limit: 12))
+        let request = Requests.Timelines.Public(local: true, range: .since(id: "420", limit: 12))
         let expectedLocal = URLQueryItem(name: "local", value: "true")
         let expectedLimit = URLQueryItem(name: "limit", value: "12")
         let expectedSinceID = URLQueryItem(name: "since_id", value: "420")
@@ -79,7 +79,7 @@ class TimelinesTests: XCTestCase {
     }
 
     func testTagTimelineLocal() {
-        let request = Timelines.tag("mastodonkit", local: true)
+        let request = Requests.Timelines.Tag("mastodonkit", local: true)
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/timelines/tag/mastodonkit")
@@ -91,7 +91,7 @@ class TimelinesTests: XCTestCase {
     }
 
     func testTagTimelineFederated() {
-        let request = Timelines.tag("mastodonkit")
+        let request = Requests.Timelines.Tag("mastodonkit")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/timelines/tag/mastodonkit")
@@ -103,7 +103,7 @@ class TimelinesTests: XCTestCase {
     }
 
     func testTagTimelineWithRange() {
-        let request = Timelines.tag("mastodonkit", range: .since(id: "420", limit: 12))
+        let request = Requests.Timelines.Tag("mastodonkit", range: .since(id: "420", limit: 12))
         let expectedLimit = URLQueryItem(name: "limit", value: "12")
         let expectedSinceID = URLQueryItem(name: "since_id", value: "420")
 

@@ -8,16 +8,16 @@
 
 import Foundation
 
-/// `Blocks` requests.
-public enum Blocks {
-    /// Fetches a user's blocks.
-    ///
-    /// - Parameter range: The bounds used when requesting data from Mastodon.
-    /// - Returns: Request for `[Account]`.
-    public static func all(range: RequestRange = .default) -> Request<[Account]> {
-        let parameters = range.parameters(limit: between(1, and: 80, default: 40))
-        let method = HTTPMethod.get(.parameters(parameters))
-
-        return Request<[Account]>(path: "/api/v1/blocks", method: method)
+extension Requests {
+    /// `Blocks` requests.
+    public enum Blocks {
+        /// Fetches a user's blocks.
+        open class All: RequestBase<[Account]> {
+            /// - Parameter range: The bounds used when requesting data from Mastodon.
+            public init(range: RequestRange = .default) {
+                let parameters = range.parameters(limit: between(1, and: 80, default: 40))
+                super.init(path: "/api/v1/blocks", method: .get(.parameters(parameters)))
+            }
+        }
     }
 }

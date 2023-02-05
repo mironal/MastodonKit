@@ -11,7 +11,7 @@ import XCTest
 
 class ListsTests: XCTestCase {
     func testAll() {
-        let request = Lists.all()
+        let request = Requests.Lists.All()
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/lists")
@@ -23,7 +23,7 @@ class ListsTests: XCTestCase {
     }
 
     func testAccountsInList() {
-        let request = Lists.accounts(id: "42")
+        let request = Requests.Lists.Accounts(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/lists/42/accounts")
@@ -35,7 +35,7 @@ class ListsTests: XCTestCase {
     }
 
     func testList() {
-        let request = Lists.list(id: "42")
+        let request = Requests.Lists.ListBy(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/lists/42")
@@ -47,7 +47,7 @@ class ListsTests: XCTestCase {
     }
 
     func testCreate() {
-        let request = Lists.create(title: "awesome list")
+        let request = Requests.Lists.Create(title: "awesome list")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/lists")
@@ -63,7 +63,7 @@ class ListsTests: XCTestCase {
     }
 
     func testUpdate() {
-        let request = Lists.update(id: "42", title: "awesome title")
+        let request = Requests.Lists.Update(id: "42", title: "awesome title")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/lists/42")
@@ -79,7 +79,7 @@ class ListsTests: XCTestCase {
     }
 
     func testDelete() {
-        let request = Lists.delete(id: "42")
+        let request = Requests.Lists.Delete(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/lists/42")
@@ -91,7 +91,7 @@ class ListsTests: XCTestCase {
     }
 
     func testAdd() {
-        let request = Lists.add(accountIDs: ["1", "2", "3"], toList: "42")
+        let request = Requests.Lists.Add(accountIDs: ["1", "2", "3"], toList: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/lists/42/accounts")
@@ -109,7 +109,7 @@ class ListsTests: XCTestCase {
     }
 
     func testRemove() {
-        let request = Lists.remove(accountIDs: ["1", "2", "3"], fromList: "42")
+        let request = Requests.Lists.Remove(accountIDs: ["1", "2", "3"], fromList: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/lists/42/accounts")

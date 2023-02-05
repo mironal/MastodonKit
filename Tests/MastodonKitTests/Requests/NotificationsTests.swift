@@ -11,7 +11,7 @@ import XCTest
 
 class NotificationsTests: XCTestCase {
     func testAll() {
-        let request = Notifications.all()
+        let request = Requests.Notifications.All()
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/notifications")
@@ -23,7 +23,7 @@ class NotificationsTests: XCTestCase {
     }
 
     func testAllWithRange() {
-        let request = Notifications.all(range: .max(id: "123", limit: 12))
+        let request = Requests.Notifications.All(range: .max(id: "123", limit: 12))
         let expectedMaxID = URLQueryItem(name: "max_id", value: "123")
         let expectedLimit = URLQueryItem(name: "limit", value: "12")
 
@@ -39,7 +39,7 @@ class NotificationsTests: XCTestCase {
     }
 
     func testNotification() {
-        let request = Notifications.notification(id: "42")
+        let request = Requests.Notifications.NotificationBy(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/notifications/42")
@@ -51,7 +51,7 @@ class NotificationsTests: XCTestCase {
     }
 
     func testDismissAll() {
-        let request = Notifications.dismissAll()
+        let request = Requests.Notifications.DismissAll()
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/notifications/clear")
@@ -63,7 +63,7 @@ class NotificationsTests: XCTestCase {
     }
 
     func testDismissWithID() {
-        let request = Notifications.dismiss(id: "42")
+        let request = Requests.Notifications.Dismiss(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/notifications/dismiss")

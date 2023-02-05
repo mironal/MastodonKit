@@ -11,7 +11,7 @@ import XCTest
 
 class FollowRequestsTests: XCTestCase {
     func testAll() {
-        let request = FollowRequests.all()
+        let request = Requests.FollowRequests.All()
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/follow_requests")
@@ -23,7 +23,7 @@ class FollowRequestsTests: XCTestCase {
     }
 
     func testAllWithRange() {
-        let request = FollowRequests.all(range: .max(id: "12", limit: 50))
+        let request = Requests.FollowRequests.All(range: .max(id: "12", limit: 50))
         let expectedMaxID = URLQueryItem(name: "max_id", value: "12")
         let expectedLimit = URLQueryItem(name: "limit", value: "50")
 
@@ -39,7 +39,7 @@ class FollowRequestsTests: XCTestCase {
     }
 
     func testAuthorize() {
-        let request = FollowRequests.authorize(id: "42")
+        let request = Requests.FollowRequests.Authorize(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/follow_requests/42/authorize")
@@ -51,7 +51,7 @@ class FollowRequestsTests: XCTestCase {
     }
 
     func testReject() {
-        let request = FollowRequests.reject(id: "42")
+        let request = Requests.FollowRequests.Reject(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/follow_requests/42/reject")

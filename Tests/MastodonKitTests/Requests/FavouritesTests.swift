@@ -11,7 +11,7 @@ import XCTest
 
 class FavouritesTests: XCTestCase {
     func testAll() {
-        let request = Favourites.all()
+        let request = Requests.Favourites.All()
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/favourites")
@@ -23,7 +23,7 @@ class FavouritesTests: XCTestCase {
     }
 
     func testAllWithRange() {
-        let request = Favourites.all(range: .since(id: "42", limit: nil))
+        let request = Requests.Favourites.All(range: .since(id: "42", limit: nil))
         let expectedSinceID = URLQueryItem(name: "since_id", value: "42")
 
         // Endpoint

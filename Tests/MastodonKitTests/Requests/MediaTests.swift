@@ -11,7 +11,7 @@ import XCTest
 
 class MediaTests: XCTestCase {
     func testUpload() {
-        let request = Media.upload(media: .other(Data(), fileExtension: "fake", mimeType: "media/fake"))
+        let request = Requests.Media.Upload(media: .other(Data(), fileExtension: "fake", mimeType: "media/fake"))
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/media")

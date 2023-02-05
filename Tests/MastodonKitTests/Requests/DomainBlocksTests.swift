@@ -11,7 +11,7 @@ import XCTest
 
 class DomainBlocksTests: XCTestCase {
     func testAll() {
-        let request = DomainBlocks.all()
+        let request = Requests.DomainBlocks.All()
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/domain_blocks")
@@ -23,7 +23,7 @@ class DomainBlocksTests: XCTestCase {
     }
 
     func testAllWithRange() {
-        let request = DomainBlocks.all(range: .max(id: "42", limit: nil))
+        let request = Requests.DomainBlocks.All(range: .max(id: "42", limit: nil))
         let expectedMaxID = URLQueryItem(name: "max_id", value: "42")
 
         // Endpoint
@@ -37,7 +37,7 @@ class DomainBlocksTests: XCTestCase {
     }
 
     func testBlock() {
-        let request = DomainBlocks.block(domain: "foobar")
+        let request = Requests.DomainBlocks.Block(domain: "foobar")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/domain_blocks")
@@ -53,7 +53,7 @@ class DomainBlocksTests: XCTestCase {
     }
 
     func testUnlock() {
-        let request = DomainBlocks.unblock(domain: "foobar")
+        let request = Requests.DomainBlocks.Unblock(domain: "foobar")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/domain_blocks")
