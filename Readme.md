@@ -12,6 +12,8 @@ There are the following differences compared to the original.
 
 `MastodonRequests`
 
+- All requests are defined in `Requests`
+  - This makes it easier to find the type of each request.
 - Requests are typed for each API.
   - This makes it easy to define specific API requests as variables and arguments.
 
@@ -26,11 +28,11 @@ func doSomethingForCreateRequest(_ req: Request<Status>) {
 }
 
 // Our
-let request = Statuses.Create(status: "Mastodon's API is awesome!")
-let request2 = Statuses.Favourite(id: "1")
+let request = Requests.Statuses.Create(status: "Mastodon's API is awesome!")
+let request2 = Requests.Statuses.Favourite(id: "1")
 doSomethingForCreateRequest(request)
 doSomethingForCreateRequest(request2) // Error occurred!
-func doSomethingForCreateRequest(_ req: Statuses.Create) {
+func doSomethingForCreateRequest(_ req: Requests.Statuses.Create) {
     // do something
 }
 ```
