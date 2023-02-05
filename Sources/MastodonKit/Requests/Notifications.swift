@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `Notifications` requests.
     public enum Notifications {
         /// Fetches a user's notifications.

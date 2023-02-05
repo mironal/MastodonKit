@@ -11,7 +11,7 @@ import XCTest
 
 class MutesTests: XCTestCase {
     func testAll() {
-        let request = MastodonRequests.Mutes.All()
+        let request = Requests.Mutes.All()
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/mutes")
@@ -23,7 +23,7 @@ class MutesTests: XCTestCase {
     }
 
     func testAllWithRange() {
-        let request = MastodonRequests.Mutes.All(range: .since(id: "15", limit: 37))
+        let request = Requests.Mutes.All(range: .since(id: "15", limit: 37))
         let expectedSinceID = URLQueryItem(name: "since_id", value: "15")
         let expectedLimit = URLQueryItem(name: "limit", value: "37")
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `Instances` requests.
     public enum Instances {
         /// Gets instance information.

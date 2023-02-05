@@ -11,7 +11,7 @@ import XCTest
 
 class LoginTests: XCTestCase {
     func testSilentLogin() {
-        let request = MastodonRequests.Login.Silent(clientID: "client id", clientSecret: "client secret", scopes: [.read, .write], username: "foo", password: "123")
+        let request = Requests.Login.Silent(clientID: "client id", clientSecret: "client secret", scopes: [.read, .write], username: "foo", password: "123")
 
         // Endpoint
         XCTAssertEqual(request.path, "/oauth/token")
@@ -31,7 +31,7 @@ class LoginTests: XCTestCase {
     }
 
     func testOAuthLogin() {
-        let request = MastodonRequests.Login.OAuth(clientID: "client id", clientSecret: "client secret", scopes: [.read, .write], redirectURI: "foo://oauth", code: "123")
+        let request = Requests.Login.OAuth(clientID: "client id", clientSecret: "client secret", scopes: [.read, .write], redirectURI: "foo://oauth", code: "123")
 
         // Endpoint
         XCTAssertEqual(request.path, "/oauth/token")

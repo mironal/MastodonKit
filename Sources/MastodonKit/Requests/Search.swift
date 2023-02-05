@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `Search` requests.
     public enum Search {
         /// Searches for content.

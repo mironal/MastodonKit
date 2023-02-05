@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `DomainBlocks` requests.
     public enum DomainBlocks {
         /// Fetches a user's blocked domains.

@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `Reports` requests.
     public enum Reports {
         /// Fetches a user's reports.

@@ -11,7 +11,7 @@ import XCTest
 
 class TimelinesTeSearchTestssts: XCTestCase {
     func testSearchWithoutResolve() {
-        let request = MastodonRequests.Search.Search(query: "mastodonkit")
+        let request = Requests.Search.Search(query: "mastodonkit")
         let expectedQuery = URLQueryItem(name: "q", value: "mastodonkit")
 
         // Endpoint
@@ -26,7 +26,7 @@ class TimelinesTeSearchTestssts: XCTestCase {
     }
 
     func testSearchWithResolve() {
-        let request = MastodonRequests.Search.Search(query: "mastodonkit", resolve: true)
+        let request = Requests.Search.Search(query: "mastodonkit", resolve: true)
         let expectedQuery = URLQueryItem(name: "q", value: "mastodonkit")
         let expectedResolve = URLQueryItem(name: "resolve", value: "true")
 

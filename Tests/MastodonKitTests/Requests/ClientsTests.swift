@@ -11,7 +11,7 @@ import XCTest
 
 class ClientsTests: XCTestCase {
     func testRegisterApplication() {
-        let request = MastodonRequests.Clients.Register(clientName: "MastodonKitTestApplication", scopes: [])
+        let request = Requests.Clients.Register(clientName: "MastodonKitTestApplication", scopes: [])
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/apps")
@@ -29,7 +29,7 @@ class ClientsTests: XCTestCase {
     }
 
     func testRegisterApplicationWithRedirectURI() {
-        let request = MastodonRequests.Clients.Register(clientName: "MastodonKitTestApplication", redirectURI: "my-awesome-app://", scopes: [.read, .follow])
+        let request = Requests.Clients.Register(clientName: "MastodonKitTestApplication", redirectURI: "my-awesome-app://", scopes: [.read, .follow])
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/apps")
@@ -47,7 +47,7 @@ class ClientsTests: XCTestCase {
     }
 
     func testRegisterApplicationWithStatusAndWebsite() {
-        let request = MastodonRequests.Clients.Register(clientName: "MastodonKitTestApplication", scopes: [.read, .write, .follow], website: "https://github.com/ornithocoder/MastodonKit")
+        let request = Requests.Clients.Register(clientName: "MastodonKitTestApplication", scopes: [.read, .write, .follow], website: "https://github.com/ornithocoder/MastodonKit")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/apps")

@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `Mutes` requests
     public enum Mutes {
         /// Fetches a user's mutes.

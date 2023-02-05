@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `Favourites` requests.
     public enum Favourites {
         /// Fetches a user's favourites.

@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `Accounts` requests.
     public enum Accounts {
         /// Fetches an account.
@@ -179,5 +179,3 @@ extension MastodonRequests {
         }
     }
 }
-
-

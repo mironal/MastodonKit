@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `Lists` requests.
     public enum Lists {
         /// Retrieves lists.

@@ -40,7 +40,7 @@ class ClientInitializationWithInvalidURLTests: XCTestCase {
         let client = Client(baseURL: "42 is the answer but isn't a valid URL", session: mockSession)
         var passedError: Error?
 
-        client.run(MastodonRequests.Timelines.Home()) { result in
+        client.run(Requests.Timelines.Home()) { result in
             switch result {
             case .success:
                 XCTFail("")
@@ -61,7 +61,7 @@ class ClientRunTests: XCTestCase {
         super.setUp()
 
         let client = Client(baseURL: "https://my.mastodon.instance/", accessToken: "foo", session: mockSession)
-        let request = MastodonRequests.Timelines.Home()
+        let request = Requests.Timelines.Home()
 
         client.run(request) { result in
             self.result = result
@@ -166,7 +166,7 @@ class ClientRunWithoutAccessTokenTests: XCTestCase {
         super.setUp()
 
         let client = Client(baseURL: "https://my.mastodon.instance/", session: mockSession)
-        let request = MastodonRequests.Timelines.Public(local: true)
+        let request = Requests.Timelines.Public(local: true)
 
         client.run(request) { _ in }
     }
@@ -194,7 +194,7 @@ class ClientRunWithPostAndHTTPBodyTests: XCTestCase {
         super.setUp()
 
         let client = Client(baseURL: "https://my.mastodon.instance/", accessToken: "foo", session: mockSession)
-        let request = MastodonRequests.Statuses.Create(status: "Hi there!", replyToID: "42", sensitive: false, visibility: .public)
+        let request = Requests.Statuses.Create(status: "Hi there!", replyToID: "42", sensitive: false, visibility: .public)
 
         client.run(request) { _ in }
     }
@@ -226,7 +226,7 @@ class ClientRunWithGetAndQueryItemsTests: XCTestCase {
         super.setUp()
 
         let client = Client(baseURL: "https://my.mastodon.instance/", accessToken: "bär", session: mockSession)
-        let request = MastodonRequests.Search.Search(query: "MastodonKit", resolve: false)
+        let request = Requests.Search.Search(query: "MastodonKit", resolve: false)
 
         client.run(request) { _ in }
     }

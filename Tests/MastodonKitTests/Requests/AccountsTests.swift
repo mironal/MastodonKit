@@ -11,7 +11,7 @@ import XCTest
 
 class AccountsTests: XCTestCase {
     func testAccount() {
-        let request = MastodonRequests.Accounts.AccountByID("42")
+        let request = Requests.Accounts.AccountByID("42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/accounts/42")
@@ -23,7 +23,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testCurrentUser() {
-        let request = MastodonRequests.Accounts.CurrentUser()
+        let request = Requests.Accounts.CurrentUser()
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/accounts/verify_credentials")
@@ -38,7 +38,7 @@ class AccountsTests: XCTestCase {
         let avatar = MediaAttachment.jpeg(Data(count: 8))
         let header = MediaAttachment.png(Data(count: 8))
 
-        let request = MastodonRequests.Accounts.UpdateCurrentUser(displayName: "Ornithologist Coder", note: "Creator of MastodonKit", avatar: avatar, header: header)
+        let request = Requests.Accounts.UpdateCurrentUser(displayName: "Ornithologist Coder", note: "Creator of MastodonKit", avatar: avatar, header: header)
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/accounts/update_credentials")
@@ -57,7 +57,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testUpdateCurrentUserWithSomeFields() {
-        let request = MastodonRequests.Accounts.UpdateCurrentUser(displayName: "Ornithologist Coder", note: "Creator of MastodonKit")
+        let request = Requests.Accounts.UpdateCurrentUser(displayName: "Ornithologist Coder", note: "Creator of MastodonKit")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/accounts/update_credentials")
@@ -74,7 +74,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testFollowers() {
-        let request = MastodonRequests.Accounts.Followers(id: "42")
+        let request = Requests.Accounts.Followers(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/accounts/42/followers")
@@ -86,7 +86,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testFollowersWithRange() {
-        let request = MastodonRequests.Accounts.Followers(id: "42", range: .since(id: "420", limit: 37))
+        let request = Requests.Accounts.Followers(id: "42", range: .since(id: "420", limit: 37))
         let expectedMaxID = URLQueryItem(name: "since_id", value: "420")
         let expectedLimit = URLQueryItem(name: "limit", value: "37")
 
@@ -102,7 +102,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testFollowing() {
-        let request = MastodonRequests.Accounts.Following(id: "42")
+        let request = Requests.Accounts.Following(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/accounts/42/following")
@@ -114,7 +114,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testFollowingWithRange() {
-        let request = MastodonRequests.Accounts.Following(id: "42", range: .limit(17))
+        let request = Requests.Accounts.Following(id: "42", range: .limit(17))
         let expectedLimit = URLQueryItem(name: "limit", value: "17")
 
         // Endpoint
@@ -128,7 +128,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testStatuses() {
-        let request = MastodonRequests.Accounts.Statuses(id: "42")
+        let request = Requests.Accounts.Statuses(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/accounts/42/statuses")
@@ -140,7 +140,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testStatusesWithRange() {
-        let request = MastodonRequests.Accounts.Statuses(id: "42", range: .since(id: "10", limit: 20))
+        let request = Requests.Accounts.Statuses(id: "42", range: .since(id: "10", limit: 20))
         let expectedSinceID = URLQueryItem(name: "since_id", value: "10")
         let expectedLimit = URLQueryItem(name: "limit", value: "20")
 
@@ -156,7 +156,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testStatusesWithMediaOnly() {
-        let request = MastodonRequests.Accounts.Statuses(id: "42", mediaOnly: true)
+        let request = Requests.Accounts.Statuses(id: "42", mediaOnly: true)
         let expectedFlag = URLQueryItem(name: "only_media", value: "true")
 
         // Endpoint
@@ -169,7 +169,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testStatusesWithPinnedStatusOnly() {
-        let request = MastodonRequests.Accounts.Statuses(id: "42", pinnedOnly: true)
+        let request = Requests.Accounts.Statuses(id: "42", pinnedOnly: true)
         let expectedFlag = URLQueryItem(name: "pinned", value: "true")
 
         // Endpoint
@@ -182,7 +182,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testStatusesWithoutReplies() {
-        let request = MastodonRequests.Accounts.Statuses(id: "42", excludeReplies: true)
+        let request = Requests.Accounts.Statuses(id: "42", excludeReplies: true)
         let expectedFlag = URLQueryItem(name: "exclude_replies", value: "true")
 
         // Endpoint
@@ -195,7 +195,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testFollow() {
-        let request = MastodonRequests.Accounts.Follow(id: "42")
+        let request = Requests.Accounts.Follow(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/accounts/42/follow")
@@ -207,7 +207,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testUnfollow() {
-        let request = MastodonRequests.Accounts.Unfollow(id: "42")
+        let request = Requests.Accounts.Unfollow(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/accounts/42/unfollow")
@@ -219,7 +219,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testRemoteFollow() {
-        let request = MastodonRequests.Accounts.RemoteFollow(uri: "username@domain")
+        let request = Requests.Accounts.RemoteFollow(uri: "username@domain")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/follows")
@@ -235,7 +235,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testBlock() {
-        let request = MastodonRequests.Accounts.Block(id: "42")
+        let request = Requests.Accounts.Block(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/accounts/42/block")
@@ -247,7 +247,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testUnblock() {
-        let request = MastodonRequests.Accounts.Unblock(id: "42")
+        let request = Requests.Accounts.Unblock(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/accounts/42/unblock")
@@ -259,7 +259,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testMute() {
-        let request = MastodonRequests.Accounts.Mute(id: "42")
+        let request = Requests.Accounts.Mute(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/accounts/42/mute")
@@ -271,7 +271,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testUnmute() {
-        let request = MastodonRequests.Accounts.Unmute(id: "42")
+        let request = Requests.Accounts.Unmute(id: "42")
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/accounts/42/unmute")
@@ -283,7 +283,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testRelationships() {
-        let request = MastodonRequests.Accounts.Relationships(ids: ["42", "52"])
+        let request = Requests.Accounts.Relationships(ids: ["42", "52"])
         let expectedID42 = URLQueryItem(name: "id[]", value: "42")
         let expectedID52 = URLQueryItem(name: "id[]", value: "52")
 
@@ -300,7 +300,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testSearchWithoutLimit() {
-        let request = MastodonRequests.Accounts.Search(query: "Ash")
+        let request = Requests.Accounts.Search(query: "Ash")
         let expectedQuery = URLQueryItem(name: "q", value: "Ash")
 
         // Endpoint
@@ -315,7 +315,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testSearchWithValidLimit() {
-        let request = MastodonRequests.Accounts.Search(query: "Ash", limit: 42)
+        let request = Requests.Accounts.Search(query: "Ash", limit: 42)
         let expectedQuery = URLQueryItem(name: "q", value: "Ash")
         let expectedLimit = URLQueryItem(name: "limit", value: "42")
 
@@ -332,7 +332,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testSearchWithLimitBelowMinimumValue() {
-        let request = MastodonRequests.Accounts.Search(query: "Ash", limit: 0)
+        let request = Requests.Accounts.Search(query: "Ash", limit: 0)
         let expectedQuery = URLQueryItem(name: "q", value: "Ash")
         let expectedLimit = URLQueryItem(name: "limit", value: "40")
 
@@ -349,7 +349,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testSearchWithLimitAboveMaximumValue() {
-        let request = MastodonRequests.Accounts.Search(query: "Ash", limit: 81)
+        let request = Requests.Accounts.Search(query: "Ash", limit: 81)
         let expectedQuery = URLQueryItem(name: "q", value: "Ash")
         let expectedLimit = URLQueryItem(name: "limit", value: "40")
 
@@ -366,7 +366,7 @@ class AccountsTests: XCTestCase {
     }
 
     func testSearchWithFollowingValue() {
-        let request = MastodonRequests.Accounts.Search(query: "Ash", following: true)
+        let request = Requests.Accounts.Search(query: "Ash", following: true)
         let expectedQuery = URLQueryItem(name: "q", value: "Ash")
         let expectedFollowing = URLQueryItem(name: "following", value: "true")
 

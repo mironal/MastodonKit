@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `Statuses` requests.
     public enum Statuses {
         /// Fetches a status.

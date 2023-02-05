@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `Login` requests.
     public enum Login {
         /// Performs a silent login.

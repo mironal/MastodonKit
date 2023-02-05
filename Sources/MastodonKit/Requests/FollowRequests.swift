@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `FollowRequests` requests.
     public enum FollowRequests {
         /// Fetches a list of follow requests.

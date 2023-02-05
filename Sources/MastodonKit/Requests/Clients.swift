@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `Clients` requests.
     public enum Clients {
         /// Registers an application.

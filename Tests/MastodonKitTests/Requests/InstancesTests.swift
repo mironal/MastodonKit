@@ -11,7 +11,7 @@ import XCTest
 
 class InstancesTests: XCTestCase {
     func testCurrent() {
-        let request = MastodonRequests.Instances.Current()
+        let request = Requests.Instances.Current()
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/instance")
@@ -23,7 +23,7 @@ class InstancesTests: XCTestCase {
     }
 
     func testCustomEmojis() {
-        let request = MastodonRequests.Instances.CustomEmojis()
+        let request = Requests.Instances.CustomEmojis()
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/custom_emojis")

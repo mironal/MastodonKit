@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `Timelines` requests.
     public enum Timelines {
         /// Retrieves the home timeline.

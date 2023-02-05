@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `Blocks` requests.
     public enum Blocks {
         /// Fetches a user's blocks.

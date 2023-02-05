@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MastodonRequests {
+extension Requests {
     /// `Media` requests.
     public enum Media {
         /// Uploads a media attachment.
