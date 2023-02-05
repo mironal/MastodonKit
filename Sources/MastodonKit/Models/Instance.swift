@@ -11,11 +11,11 @@ import Foundation
 public struct Instance: Codable, Hashable {
     public struct Stats: Codable, Hashable {
         /// Total users on this instance.
-        let userCount: Int
+        public let userCount: Int
         /// Total statuses on this instance.
-        let statusCount: Int
+        public let statusCount: Int
         /// Total domains discovered by this instance.
-        let domainCount: Int
+        public let domainCount: Int
 
         private enum CodingKeys: String, CodingKey {
             case userCount = "user_count"
