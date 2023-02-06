@@ -42,6 +42,18 @@ public struct Instance: Codable, Hashable {
     /// A user that can be contacted, as an alternative to email.
     public let contactAccount: Account
 
+    public init(uri: String, title: String, shortDescription: String, description: String, email: String, version: String? = nil, urls: [String : String]? = nil, stats: Stats, contactAccount: Account) {
+        self.uri = uri
+        self.title = title
+        self.shortDescription = shortDescription
+        self.description = description
+        self.email = email
+        self.version = version
+        self.urls = urls
+        self.stats = stats
+        self.contactAccount = contactAccount
+    }
+
     private enum CodingKeys: String, CodingKey {
         case uri
         case title

@@ -13,4 +13,9 @@ public struct Context: Codable, Hashable {
     public let ancestors: [Status]
     /// The descendants of the status in the conversation, as a list of statuses.
     public let descendants: [Status]
+
+    public init(ancestors: [Status], descendants: [Status]) {
+        self.ancestors = ancestors
+        self.descendants = descendants
+    }
 }

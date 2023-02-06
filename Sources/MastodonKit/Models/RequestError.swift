@@ -12,6 +12,10 @@ struct MastodonError: Codable, Hashable {
     /// Reason why Mastodon returned an error.
     let description: String
 
+    public init(description: String) {
+        self.description = description
+    }
+
     private enum CodingKeys: String, CodingKey {
         case description = "error"
     }

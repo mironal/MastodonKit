@@ -13,4 +13,9 @@ public struct List: Codable, Hashable {
     public let id: String
     /// The Title of the list.
     public let title: String
+
+    public init(id: String, title: String) {
+        self.id = id
+        self.title = title
+    }
 }

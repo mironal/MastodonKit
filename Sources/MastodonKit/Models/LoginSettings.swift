@@ -24,6 +24,13 @@ public struct LoginSettings: Codable, Hashable {
             .compactMap(toAccessScope)
     }
 
+    public init(accessToken: String, accessTokenType: String, createdAt: TimeInterval, scope: String) {
+        self.accessToken = accessToken
+        self.accessTokenType = accessTokenType
+        self.createdAt = createdAt
+        self.scope = scope
+    }
+
     private enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
         case accessTokenType = "token_type"

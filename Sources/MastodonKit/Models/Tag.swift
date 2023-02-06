@@ -13,4 +13,9 @@ public struct Tag: Codable, Hashable {
     public let name: String
     /// The URL of the hashtag.
     public let url: String
+
+    public init(name: String, url: String) {
+        self.name = name
+        self.url = url
+    }
 }

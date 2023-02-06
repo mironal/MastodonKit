@@ -58,6 +58,33 @@ public class Status: Codable, Hashable {
     /// Preview card for links included within status content.
     public let card: Card?
 
+    public init(id: String, uri: String, url: URL? = nil, account: Account, inReplyToID: String? = nil, inReplyToAccountID: String? = nil, content: String, createdAt: Date, emojis: [Emoji], reblogsCount: Int, favouritesCount: Int, reblogged: Bool? = nil, favourited: Bool? = nil, sensitive: Bool? = nil, spoilerText: String, visibility: Visibility, mediaAttachments: [Attachment], mentions: [Mention], tags: [Tag], application: Application? = nil, language: String? = nil, reblog: Status? = nil, pinned: Bool? = nil, card: Card? = nil) {
+        self.id = id
+        self.uri = uri
+        self.url = url
+        self.account = account
+        self.inReplyToID = inReplyToID
+        self.inReplyToAccountID = inReplyToAccountID
+        self.content = content
+        self.createdAt = createdAt
+        self.emojis = emojis
+        self.reblogsCount = reblogsCount
+        self.favouritesCount = favouritesCount
+        self.reblogged = reblogged
+        self.favourited = favourited
+        self.sensitive = sensitive
+        self.spoilerText = spoilerText
+        self.visibility = visibility
+        self.mediaAttachments = mediaAttachments
+        self.mentions = mentions
+        self.tags = tags
+        self.application = application
+        self.language = language
+        self.reblog = reblog
+        self.pinned = pinned
+        self.card = card
+    }
+
     private enum CodingKeys: String, CodingKey {
         case id
         case uri

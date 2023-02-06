@@ -18,6 +18,13 @@ public struct  ClientApplication: Codable, Hashable {
     /// The application client secret.
     public let clientSecret: String
 
+    public init(id: String, redirectURI: String, clientID: String, clientSecret: String) {
+        self.id = id
+        self.redirectURI = redirectURI
+        self.clientID = clientID
+        self.clientSecret = clientSecret
+    }
+
     private enum CodingKeys: String, CodingKey {
         case id
         case redirectURI = "redirect_uri"

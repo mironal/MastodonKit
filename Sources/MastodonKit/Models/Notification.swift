@@ -20,6 +20,14 @@ public struct Notification: Codable, Hashable {
     /// The Status associated with the notification, if applicable.
     public let status: Status?
 
+    public init(id: String, type: NotificationType, createdAt: Date, account: Account, status: Status? = nil) {
+        self.id = id
+        self.type = type
+        self.createdAt = createdAt
+        self.account = account
+        self.status = status
+    }
+
     private enum CodingKeys: String, CodingKey {
         case id
         case type
