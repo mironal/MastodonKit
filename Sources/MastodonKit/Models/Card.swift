@@ -51,6 +51,23 @@ public struct Card: Codable, Hashable {
     /// generating colorful preview thumbnails when media has not been downloaded yet.
     public let blurhash: String?
 
+    public init(url: URL, title: String, description: String, image: URL? = nil, type: PreviewType? = nil, authorName: String? = nil, authorURL: String? = nil, providerName: String? = nil, providerURL: String? = nil, html: String? = nil, width: Double? = nil, height: Double? = nil, embedURL: String? = nil, blurhash: String? = nil) {
+        self.url = url
+        self.title = title
+        self.description = description
+        self.image = image
+        self.type = type
+        self.authorName = authorName
+        self.authorURL = authorURL
+        self.providerName = providerName
+        self.providerURL = providerURL
+        self.html = html
+        self.width = width
+        self.height = height
+        self.embedURL = embedURL
+        self.blurhash = blurhash
+    }
+
     private enum CodingKeys: String, CodingKey {
         case url
         case title

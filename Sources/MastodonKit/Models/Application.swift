@@ -13,4 +13,9 @@ public struct Application: Codable, Hashable {
     public let name: String
     /// Homepage URL of the app.
     public let website: String?
+
+    public init(name: String, website: String? = nil) {
+        self.name = name
+        self.website = website
+    }
 }

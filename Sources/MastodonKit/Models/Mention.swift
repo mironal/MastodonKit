@@ -17,4 +17,11 @@ public struct Mention: Codable, Hashable {
     public let acct: String
     /// URL of user's profile (can be remote).
     public let url: String
+
+    public init(id: String, username: String, acct: String, url: String) {
+        self.id = id
+        self.username = username
+        self.acct = acct
+        self.url = url
+    }
 }

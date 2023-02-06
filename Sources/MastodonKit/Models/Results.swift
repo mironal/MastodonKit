@@ -15,4 +15,10 @@ public struct Results: Codable, Hashable {
     public let statuses: [Status]
     /// An array of matched hashtags, as strings.
     public let hashtags: [String]
+
+    public init(accounts: [Account], statuses: [Status], hashtags: [String]) {
+        self.accounts = accounts
+        self.statuses = statuses
+        self.hashtags = hashtags
+    }
 }

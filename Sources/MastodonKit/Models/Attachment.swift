@@ -36,6 +36,16 @@ public struct  Attachment: Codable, Hashable {
             public let duration: Double?
             public let bitrate: Int?
 
+            public init(width: Int? = nil, height: Int? = nil, size: String? = nil, aspect: Double? = nil, frameRate: String? = nil, duration: Double? = nil, bitrate: Int? = nil) {
+                self.width = width
+                self.height = height
+                self.size = size
+                self.aspect = aspect
+                self.frameRate = frameRate
+                self.duration = duration
+                self.bitrate = bitrate
+            }
+
             private enum CodingKeys: String, CodingKey {
                 case width
                 case height
@@ -50,11 +60,22 @@ public struct  Attachment: Codable, Hashable {
         public struct Focus: Codable, Hashable {
             public var x: Double
             public var y: Double
+
+            public init(x: Double, y: Double) {
+                self.x = x
+                self.y = y
+            }
         }
 
         public let original: Info?
         public let small: Info?
         public let focus: Focus?
+
+        public init(original: Info? = nil, small: Info? = nil, focus: Focus? = nil) {
+            self.original = original
+            self.small = small
+            self.focus = focus
+        }
     }
 
     private enum CodingKeys: String, CodingKey {

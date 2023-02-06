@@ -52,6 +52,26 @@ public struct Account: Codable, Hashable {
     /// use `[Emoji]?` as storage and use `[Emoji]` as public API.
     private let _emojis: [Emoji]?
 
+    public init(id: String, username: String, acct: String, displayName: String, note: String, url: String, avatar: String, avatarStatic: String, header: String, headerStatic: String, locked: Bool, createdAt: Date, followersCount: Int, followingCount: Int, statusesCount: Int, emojis: [Emoji]?) {
+        self.id = id
+        self.username = username
+        self.acct = acct
+        self.displayName = displayName
+        self.note = note
+        self.url = url
+        self.avatar = avatar
+        self.avatarStatic = avatarStatic
+        self.header = header
+        self.headerStatic = headerStatic
+        self.locked = locked
+        self.createdAt = createdAt
+        self.followersCount = followersCount
+        self.followingCount = followingCount
+        self.statusesCount = statusesCount
+        self._emojis = emojis
+    }
+
+
     private enum CodingKeys: String, CodingKey {
         case id
         case username
