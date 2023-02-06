@@ -17,6 +17,12 @@ public struct Instance: Codable, Hashable {
         /// Total domains discovered by this instance.
         public let domainCount: Int
 
+        public init(userCount: Int, statusCount: Int, domainCount: Int) {
+            self.userCount = userCount
+            self.statusCount = statusCount
+            self.domainCount = domainCount
+        }
+
         private enum CodingKeys: String, CodingKey {
             case userCount = "user_count"
             case statusCount = "status_count"
