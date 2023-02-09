@@ -13,6 +13,11 @@ public struct Pagination {
     public let next: RequestRange?
     /// The request range for fetching the previous page.
     public let previous: RequestRange?
+
+    public init(next: RequestRange?, previous: RequestRange?) {
+        self.next = next
+        self.previous = previous
+    }
 }
 
 extension Pagination {
