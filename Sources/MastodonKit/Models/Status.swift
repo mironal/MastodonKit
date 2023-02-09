@@ -51,6 +51,8 @@ public class Status: Codable, Hashable {
     public let application: Application?
     /// The detected language for the status.
     public let language: String?
+    /// Plain-text source of a status. Returned instead of content when status is deleted, so the user may redraft from the source text without the client having to reverse-engineer the original text from the HTML content.
+    public let text: String?
     /// The reblogged Status
     public let reblog: Status?
     /// Whether this is the pinned status for the account that posted it.
@@ -58,7 +60,7 @@ public class Status: Codable, Hashable {
     /// Preview card for links included within status content.
     public let card: Card?
 
-    public init(id: String, uri: String, url: URL? = nil, account: Account, inReplyToID: String? = nil, inReplyToAccountID: String? = nil, content: String, createdAt: Date, emojis: [Emoji], reblogsCount: Int, favouritesCount: Int, reblogged: Bool? = nil, favourited: Bool? = nil, sensitive: Bool? = nil, spoilerText: String, visibility: Visibility, mediaAttachments: [Attachment], mentions: [Mention], tags: [Tag], application: Application? = nil, language: String? = nil, reblog: Status? = nil, pinned: Bool? = nil, card: Card? = nil) {
+    public init(id: String, uri: String, url: URL? = nil, account: Account, inReplyToID: String? = nil, inReplyToAccountID: String? = nil, content: String, createdAt: Date, emojis: [Emoji], reblogsCount: Int, favouritesCount: Int, reblogged: Bool? = nil, favourited: Bool? = nil, sensitive: Bool? = nil, spoilerText: String, visibility: Visibility, mediaAttachments: [Attachment], mentions: [Mention], tags: [Tag], application: Application? = nil, language: String? = nil, text: String? = nil, reblog: Status? = nil, pinned: Bool? = nil, card: Card? = nil) {
         self.id = id
         self.uri = uri
         self.url = url
@@ -80,6 +82,7 @@ public class Status: Codable, Hashable {
         self.tags = tags
         self.application = application
         self.language = language
+        self.text = text
         self.reblog = reblog
         self.pinned = pinned
         self.card = card
@@ -107,6 +110,7 @@ public class Status: Codable, Hashable {
         case tags
         case application
         case language
+        case text
         case reblog
         case pinned
         case card
