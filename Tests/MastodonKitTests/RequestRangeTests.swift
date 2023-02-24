@@ -34,6 +34,30 @@ class RequestRangeTests: XCTestCase {
         XCTAssertTrue(parameters!.contains(expectedLimit))
     }
 
+    func testRangeWithMinValue() {
+        let range = RequestRange.min(id: "3", limit: nil)
+        let expectedMinID = Parameter(name: "min_id", value: "3")
+        let expectedLimit = Parameter(name: "limit", value: nil)
+
+        let parameters = range.parameters(limit: between(0, and: 10, default: 3))
+
+        XCTAssertEqual(parameters?.count, 2)
+        XCTAssertTrue(parameters!.contains(expectedMinID))
+        XCTAssertTrue(parameters!.contains(expectedLimit))
+    }
+
+    func testRangeWithMinValueAndLimit() {
+        let range = RequestRange.min(id: "3", limit: 10)
+        let expectedMinID = Parameter(name: "min_id", value: "3")
+        let expectedLimit = Parameter(name: "limit", value: "10")
+
+        let parameters = range.parameters(limit: between(0, and: 10, default: 3))
+
+        XCTAssertEqual(parameters?.count, 2)
+        XCTAssertTrue(parameters!.contains(expectedMinID))
+        XCTAssertTrue(parameters!.contains(expectedLimit))
+    }
+
     func testRangeWithSinceValue() {
         let range = RequestRange.since(id: "80", limit: nil)
         let expectedSinceID = Parameter(name: "since_id", value: "80")
@@ -55,6 +79,34 @@ class RequestRangeTests: XCTestCase {
 
         XCTAssertEqual(parameters?.count, 2)
         XCTAssertTrue(parameters!.contains(expectedSinceID))
+        XCTAssertTrue(parameters!.contains(expectedLimit))
+    }
+
+    func testRangeWithBothValue() {
+        let range = RequestRange.both(min: "2", max: "10", limit: nil)
+        let expectedMinID = Parameter(name: "min_id", value: "2")
+        let expectedMaxID = Parameter(name: "max_id", value: "10")
+        let expectedLimit = Parameter(name: "limit", value: nil)
+
+        let parameters = range.parameters(limit: between(0, and: 10, default: 3))
+
+        XCTAssertEqual(parameters?.count, 3)
+        XCTAssertTrue(parameters!.contains(expectedMinID))
+        XCTAssertTrue(parameters!.contains(expectedMaxID))
+        XCTAssertTrue(parameters!.contains(expectedLimit))
+    }
+
+    func testRangeWithBothAndLimitValue() {
+        let range = RequestRange.both(min: "2", max: "10", limit: 3)
+        let expectedMinID = Parameter(name: "min_id", value: "2")
+        let expectedMaxID = Parameter(name: "max_id", value: "10")
+        let expectedLimit = Parameter(name: "limit", value: "3")
+
+        let parameters = range.parameters(limit: between(0, and: 10, default: 3))
+
+        XCTAssertEqual(parameters?.count, 3)
+        XCTAssertTrue(parameters!.contains(expectedMinID))
+        XCTAssertTrue(parameters!.contains(expectedMaxID))
         XCTAssertTrue(parameters!.contains(expectedLimit))
     }
 
