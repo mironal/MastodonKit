@@ -60,6 +60,34 @@ class TimelinesTests: XCTestCase {
         XCTAssertEqual(request.method.queryItems?.count, 0)
     }
 
+    func testPublicTimelineRemote() {
+        let request = Requests.Timelines.Public(remote: true)
+        let expectedRemote = URLQueryItem(name: "remote", value: "true")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/timelines/public")
+
+        // Method
+        XCTAssertEqual(request.method.name, "GET")
+        XCTAssertNil(request.method.httpBody)
+        XCTAssertEqual(request.method.queryItems!.count, 1)
+        XCTAssertTrue(request.method.queryItems!.contains(expectedRemote))
+    }
+
+    func testPublicTimelineOnlyMedia() {
+        let request = Requests.Timelines.Public(onlyMedia: true)
+        let expectedOnlyMedia = URLQueryItem(name: "only_media", value: "true")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/timelines/public")
+
+        // Method
+        XCTAssertEqual(request.method.name, "GET")
+        XCTAssertNil(request.method.httpBody)
+        XCTAssertEqual(request.method.queryItems!.count, 1)
+        XCTAssertTrue(request.method.queryItems!.contains(expectedOnlyMedia))
+    }
+
     func testPublicTimelineLocalWithRange() {
         let request = Requests.Timelines.Public(local: true, range: .since(id: "420", limit: 12))
         let expectedLocal = URLQueryItem(name: "local", value: "true")
@@ -100,6 +128,20 @@ class TimelinesTests: XCTestCase {
         XCTAssertEqual(request.method.name, "GET")
         XCTAssertNil(request.method.httpBody)
         XCTAssertEqual(request.method.queryItems?.count, 0)
+    }
+
+    func testTagTimelineOnlyMedia() {
+        let request = Requests.Timelines.Tag("mastodonkit", onlyMedia: true)
+        let expectedOnlyMedia = URLQueryItem(name: "only_media", value: "true")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/timelines/tag/mastodonkit")
+
+        // Method
+        XCTAssertEqual(request.method.name, "GET")
+        XCTAssertNil(request.method.httpBody)
+        XCTAssertEqual(request.method.queryItems?.count, 1)
+        XCTAssertTrue(request.method.queryItems!.contains(expectedOnlyMedia))
     }
 
     func testTagTimelineWithRange() {

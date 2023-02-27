@@ -24,10 +24,16 @@ extension Requests {
         open class Public: RequestBase<[Status]> {
             /// - Parameters:
             ///   - local: Only return statuses originating from this instance.
+            ///   - remote: Show only remote statuses?
+            ///   - only_media: Show only statuses with media attached?
             ///   - range: The bounds used when requesting data from Mastodon.
-            public init(local: Bool? = nil, range: RequestRange = .default) {
+            public init(local: Bool? = nil, remote: Bool? = nil, onlyMedia: Bool? = nil, range: RequestRange = .default) {
                 let rangeParameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
-                let localParameter = [Parameter(name: "local", value: local.flatMap(trueOrNil))]
+                let localParameter = [
+                    Parameter(name: "local", value: local.flatMap(trueOrNil)),
+                    Parameter(name: "remote", value: remote.flatMap(trueOrNil)),
+                    Parameter(name: "only_media", value: onlyMedia.flatMap(trueOrNil))
+                ]
                 super.init(path: "/api/v1/timelines/public", method: .get(.parameters(localParameter + rangeParameters)))
             }
         }
@@ -37,10 +43,14 @@ extension Requests {
             /// - Parameters:
             ///   - hashtag: The hashtag.
             ///   - local: Only return statuses originating from this instance.
+            ///   - only_media: Show only statuses with media attached?
             ///   - range: The bounds used when requesting data from Mastodon.
-            public init(_ hashtag: String, local: Bool? = nil, range: RequestRange = .default) {
+            public init(_ hashtag: String, local: Bool? = nil, onlyMedia: Bool? = nil, range: RequestRange = .default) {
                 let rangeParameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
-                let localParameter = [Parameter(name: "local", value: local.flatMap(trueOrNil))]
+                let localParameter = [
+                    Parameter(name: "local", value: local.flatMap(trueOrNil)),
+                    Parameter(name: "only_media", value: onlyMedia.flatMap(trueOrNil))
+                ]
                 super.init(path: "/api/v1/timelines/tag/\(hashtag)", method: .get(.parameters(localParameter + rangeParameters)))
             }
         }
