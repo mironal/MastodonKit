@@ -54,5 +54,16 @@ extension Requests {
                 super.init(path: "/api/v1/timelines/tag/\(hashtag)", method: .get(.parameters(localParameter + rangeParameters)))
             }
         }
+
+        /// View statuses in the given list timeline.
+        open class List: RequestBase<[Status]> {
+            /// - Parameters:
+            ///   - id: Local ID of the List.
+            ///   - range: The bounds used when requesting data from Mastodon.
+            public init(_ id: String, range: RequestRange = .default) {
+                let parameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
+                super.init(path: "/api/v1/timelines/list/\(id)", method: .get(.parameters(parameters)))
+            }
+        }
     }
 }

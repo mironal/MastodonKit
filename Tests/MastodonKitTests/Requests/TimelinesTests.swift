@@ -159,4 +159,33 @@ class TimelinesTests: XCTestCase {
         XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
         XCTAssertTrue(request.method.queryItems!.contains(expectedSinceID))
     }
+
+
+    func testListTimeline() {
+        let request = Requests.Timelines.List("123")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/timelines/list/123")
+
+        // Method
+        XCTAssertEqual(request.method.name, "GET")
+        XCTAssertNil(request.method.httpBody)
+        XCTAssertEqual(request.method.queryItems!.count, 0)
+    }
+
+    func testListTimelineWithRange() {
+        let request = Requests.Timelines.List("123", range: .min(id: "30", limit: 22))
+        let expectedLimit = URLQueryItem(name: "limit", value: "22")
+        let expectedMinID = URLQueryItem(name: "min_id", value: "30")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/timelines/list/123")
+
+        // Method
+        XCTAssertEqual(request.method.name, "GET")
+        XCTAssertNil(request.method.httpBody)
+        XCTAssertEqual(request.method.queryItems!.count, 2)
+        XCTAssertTrue(request.method.queryItems!.contains(expectedLimit))
+        XCTAssertTrue(request.method.queryItems!.contains(expectedMinID))
+    }
 }
