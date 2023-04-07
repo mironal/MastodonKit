@@ -60,5 +60,27 @@ extension Requests {
                 super.init(path: "/oauth/token", method: .post(.parameters(parameters)))
             }
         }
+
+        /// Logs the user out.
+        open class RevokeOauth: RequestBase<Empty> {
+            ///
+            /// - Parameters:
+            ///   - clientID: The client ID.
+            ///   - clientSecret: The client secret.
+            ///   - loginSettings: The previously obtained loginSettings, to be invalidated.
+            ///
+            public init(clientID: String,
+                        clientSecret: String,
+                        token: String) {
+                let parameters = [
+                    Parameter(name: "client_id", value: clientID),
+                    Parameter(name: "client_secret", value: clientSecret),
+                    Parameter(name: "token", value: token)
+                ]
+
+                let method = HTTPMethod.post(.parameters(parameters))
+                super.init(path: "/oauth/revoke", method: method)
+            }
+        }
     }
 }
