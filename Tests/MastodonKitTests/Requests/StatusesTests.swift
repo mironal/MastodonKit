@@ -270,6 +270,30 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
     }
 
+    func testBookmark() {
+        let request = Requests.Statuses.Bookmark(id: "42")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/statuses/42/bookmark")
+
+        // Method
+        XCTAssertEqual(request.method.name, "POST")
+        XCTAssertNil(request.method.httpBody)
+        XCTAssertNil(request.method.queryItems)
+    }
+
+    func testUnbookmark() {
+        let request = Requests.Statuses.Unbookmark(id: "42")
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/statuses/42/unbookmark")
+
+        // Method
+        XCTAssertEqual(request.method.name, "POST")
+        XCTAssertNil(request.method.httpBody)
+        XCTAssertNil(request.method.queryItems)
+    }
+
     func testPin() {
         let request = Requests.Statuses.Pin(id: "42")
 
