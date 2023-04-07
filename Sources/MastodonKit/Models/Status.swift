@@ -60,7 +60,10 @@ public class Status: Codable, Hashable {
     /// Preview card for links included within status content.
     public let card: Card?
 
-    public init(id: String, uri: String, url: URL? = nil, account: Account, inReplyToID: String? = nil, inReplyToAccountID: String? = nil, content: String, createdAt: Date, emojis: [Emoji], reblogsCount: Int, favouritesCount: Int, reblogged: Bool? = nil, favourited: Bool? = nil, sensitive: Bool? = nil, spoilerText: String, visibility: Visibility, mediaAttachments: [Attachment], mentions: [Mention], tags: [Tag], application: Application? = nil, language: String? = nil, text: String? = nil, reblog: Status? = nil, pinned: Bool? = nil, card: Card? = nil) {
+    /// How many replies this status has received
+    public let repliesCount: Int
+
+    public init(id: String, uri: String, url: URL? = nil, account: Account, inReplyToID: String? = nil, inReplyToAccountID: String? = nil, content: String, createdAt: Date, emojis: [Emoji], reblogsCount: Int, favouritesCount: Int, reblogged: Bool? = nil, favourited: Bool? = nil, sensitive: Bool? = nil, spoilerText: String, visibility: Visibility, mediaAttachments: [Attachment], mentions: [Mention], tags: [Tag], application: Application? = nil, language: String? = nil, text: String? = nil, reblog: Status? = nil, pinned: Bool? = nil, card: Card? = nil, repliesCount: Int) {
         self.id = id
         self.uri = uri
         self.url = url
@@ -86,6 +89,7 @@ public class Status: Codable, Hashable {
         self.reblog = reblog
         self.pinned = pinned
         self.card = card
+        self.repliesCount = repliesCount
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -114,6 +118,7 @@ public class Status: Codable, Hashable {
         case reblog
         case pinned
         case card
+        case repliesCount = "replies_count"
     }
 
     public static func == (lhs: Status, rhs: Status) -> Bool {
