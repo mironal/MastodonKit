@@ -35,6 +35,8 @@ public class Status: Codable, Hashable {
     public let reblogged: Bool?
     /// Whether the authenticated user has favourited the status.
     public let favourited: Bool?
+    /// Whether the authenticated user has bookmarked the status.
+    public let bookmarked: Bool?
     /// Whether media attachments should be hidden by default.
     public let sensitive: Bool?
     /// If not empty, warning text that should be displayed before the actual content.
@@ -63,7 +65,7 @@ public class Status: Codable, Hashable {
     /// How many replies this status has received
     public let repliesCount: Int
 
-    public init(id: String, uri: String, url: URL? = nil, account: Account, inReplyToID: String? = nil, inReplyToAccountID: String? = nil, content: String, createdAt: Date, emojis: [Emoji], reblogsCount: Int, favouritesCount: Int, reblogged: Bool? = nil, favourited: Bool? = nil, sensitive: Bool? = nil, spoilerText: String, visibility: Visibility, mediaAttachments: [Attachment], mentions: [Mention], tags: [Tag], application: Application? = nil, language: String? = nil, text: String? = nil, reblog: Status? = nil, pinned: Bool? = nil, card: Card? = nil, repliesCount: Int) {
+    public init(id: String, uri: String, url: URL? = nil, account: Account, inReplyToID: String? = nil, inReplyToAccountID: String? = nil, content: String, createdAt: Date, emojis: [Emoji], reblogsCount: Int, favouritesCount: Int, reblogged: Bool? = nil, favourited: Bool? = nil, bookmarked: Bool? = nil, sensitive: Bool? = nil, spoilerText: String, visibility: Visibility, mediaAttachments: [Attachment], mentions: [Mention], tags: [Tag], application: Application? = nil, language: String? = nil, text: String? = nil, reblog: Status? = nil, pinned: Bool? = nil, card: Card? = nil, repliesCount: Int) {
         self.id = id
         self.uri = uri
         self.url = url
@@ -77,6 +79,7 @@ public class Status: Codable, Hashable {
         self.favouritesCount = favouritesCount
         self.reblogged = reblogged
         self.favourited = favourited
+        self.bookmarked = bookmarked
         self.sensitive = sensitive
         self.spoilerText = spoilerText
         self.visibility = visibility
@@ -106,6 +109,7 @@ public class Status: Codable, Hashable {
         case favouritesCount = "favourites_count"
         case reblogged
         case favourited
+        case bookmarked
         case sensitive
         case spoilerText = "spoiler_text"
         case visibility
