@@ -44,6 +44,10 @@ public struct Account: Codable, Hashable {
     public var emojis: [Emoji] {
         return _emojis ?? []
     }
+    /// Additional metadata attached to a profile as name-value pairs.
+    public var fields: [Field] {
+        return _fields ?? []
+    }
 
     /// Real storage of emojis.
     ///
@@ -51,8 +55,9 @@ public struct Account: Codable, Hashable {
     /// property emoji is added in 2.4.0, and it is non-optional. But for compibility with older version instance, we
     /// use `[Emoji]?` as storage and use `[Emoji]` as public API.
     private let _emojis: [Emoji]?
+    private let _fields: [Field]?
 
-    public init(id: String, username: String, acct: String, displayName: String, note: String, url: String, avatar: String, avatarStatic: String, header: String, headerStatic: String, locked: Bool, createdAt: Date, followersCount: Int, followingCount: Int, statusesCount: Int, emojis: [Emoji]?) {
+    public init(id: String, username: String, acct: String, displayName: String, note: String, url: String, avatar: String, avatarStatic: String, header: String, headerStatic: String, locked: Bool, createdAt: Date, followersCount: Int, followingCount: Int, statusesCount: Int, emojis: [Emoji]?, fields: [Field]) {
         self.id = id
         self.username = username
         self.acct = acct
@@ -69,6 +74,7 @@ public struct Account: Codable, Hashable {
         self.followingCount = followingCount
         self.statusesCount = statusesCount
         self._emojis = emojis
+        self._fields = fields
     }
 
 
@@ -89,5 +95,6 @@ public struct Account: Codable, Hashable {
         case followingCount = "following_count"
         case statusesCount = "statuses_count"
         case _emojis = "emojis"
+        case _fields = "fields"
     }
 }
