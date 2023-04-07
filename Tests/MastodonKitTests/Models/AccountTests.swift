@@ -32,6 +32,9 @@ class AccountTests: XCTestCase {
         XCTAssertEqual(account?.emojis.first?.shortcode, "mastodon")
         XCTAssertEqual(account?.emojis.first?.url, URL(string: "https://static.mastodon.technology/custom_emojis/images/000/000/435/original/61371621aea40c9e.png"))
         XCTAssertEqual(account?.emojis.first?.staticURL, URL(string: "https://static.mastodon.technology/custom_emojis/images/000/000/435/static/61371621aea40c9e.png"))
+        XCTAssertEqual(account?.fields[0], .init(name: "Pronouns", value: "they/them", verifiedAt: nil))
+        XCTAssertEqual(account?.fields[1], .init(name: "Alt", value: "<span class=\"h-card\"><a href=\"https://cybre.space/@noiob\" class=\"u-url mention\" rel=\"nofollow noopener noreferrer\" target=\"_blank\">@<span>noiob</span}</span>", verifiedAt: nil))
+        XCTAssertEqual(account?.fields[2], .init(name: "Website", value: "<a href=\"http://shork.xyz\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"><span class=\"invisible\">http://</span><span class=\"\">shork.xyz</span><span class=\"invisible\"></span}", verifiedAt: Date(timeIntervalSince1970: 1573381870.744)))
     }
 
     func testAccountWithInvalidData() {

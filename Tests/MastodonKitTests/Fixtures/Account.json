@@ -20,5 +20,22 @@
             "url": "https://static.mastodon.technology/custom_emojis/images/000/000/435/original/61371621aea40c9e.png",
             "static_url": "https://static.mastodon.technology/custom_emojis/images/000/000/435/static/61371621aea40c9e.png"
         }
+    ],
+    "fields": [
+        {
+            "name": "Pronouns",
+            "value": "they/them",
+            "verified_at": null
+        },
+        {
+            "name": "Alt",
+            "value": "<span class=\"h-card\"><a href=\"https://cybre.space/@noiob\" class=\"u-url mention\" rel=\"nofollow noopener noreferrer\" target=\"_blank\">@<span>noiob</span}</span>",
+            "verified_at": null
+        },
+        {
+            "name": "Website",
+            "value": "<a href=\"http://shork.xyz\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"><span class=\"invisible\">http://</span><span class=\"\">shork.xyz</span><span class=\"invisible\"></span}",
+            "verified_at": "2019-11-10T10:31:10.744+00:00"
+        }
     ]
 }

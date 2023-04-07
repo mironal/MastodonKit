@@ -44,6 +44,18 @@ public struct Account: Codable, Hashable {
     public var emojis: [Emoji] {
         return _emojis ?? []
     }
+    /// Additional metadata attached to a profile as name-value pairs.
+    public var fields: [Field] {
+        return _fields ?? []
+    }
+    /// Indicates that the account may perform automated actions, may not be monitored, or identifies as a robot.
+    public var bot: Bool {
+        return _bot ?? false
+    }
+    /// Indicates that the account represents a Group actor
+    public var group: Bool {
+        return _group ?? false
+    }
 
     /// Real storage of emojis.
     ///
@@ -51,8 +63,11 @@ public struct Account: Codable, Hashable {
     /// property emoji is added in 2.4.0, and it is non-optional. But for compibility with older version instance, we
     /// use `[Emoji]?` as storage and use `[Emoji]` as public API.
     private let _emojis: [Emoji]?
+    private let _fields: [Field]?
+    private let _bot: Bool?
+    private let _group: Bool?
 
-    public init(id: String, username: String, acct: String, displayName: String, note: String, url: String, avatar: String, avatarStatic: String, header: String, headerStatic: String, locked: Bool, createdAt: Date, followersCount: Int, followingCount: Int, statusesCount: Int, emojis: [Emoji]?) {
+    public init(id: String, username: String, acct: String, displayName: String, note: String, url: String, avatar: String, avatarStatic: String, header: String, headerStatic: String, locked: Bool, createdAt: Date, followersCount: Int, followingCount: Int, statusesCount: Int, emojis: [Emoji]?, fields: [Field], bot: Bool, group: Bool) {
         self.id = id
         self.username = username
         self.acct = acct
@@ -69,6 +84,9 @@ public struct Account: Codable, Hashable {
         self.followingCount = followingCount
         self.statusesCount = statusesCount
         self._emojis = emojis
+        self._fields = fields
+        self._bot = bot
+        self._group = group
     }
 
 
@@ -89,5 +107,8 @@ public struct Account: Codable, Hashable {
         case followingCount = "following_count"
         case statusesCount = "statuses_count"
         case _emojis = "emojis"
+        case _fields = "fields"
+        case _bot = "bot"
+        case _group = "group"
     }
 }
