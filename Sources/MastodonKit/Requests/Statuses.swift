@@ -124,6 +124,24 @@ extension Requests {
             }
         }
 
+        open class Bookmark: RequestBase<Status> {
+            /// Bookmarks a status.
+            ///
+            /// - Parameter id: The status id.
+            public init(id: String) {
+                super.init(path: "/api/v1/statuses/\(id)/bookmark", method: .post(.empty))
+            }
+        }
+
+        open class Unbookmark: RequestBase<Status> {
+            /// Unbookmarks a status.
+            ///
+            /// - Parameter id: The status id.
+            public init(id: String) {
+                super.init(path: "/api/v1/statuses/\(id)/unbookmark", method: .post(.empty))
+            }
+        }
+
         /// Pins a status.
         open class Pin: RequestBase<Status> {
             /// - Parameter id: The status id.
