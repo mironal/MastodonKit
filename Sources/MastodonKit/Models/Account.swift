@@ -48,6 +48,14 @@ public struct Account: Codable, Hashable {
     public var fields: [Field] {
         return _fields ?? []
     }
+    /// Indicates that the account may perform automated actions, may not be monitored, or identifies as a robot.
+    public var bot: Bool {
+        return _bot ?? false
+    }
+    /// Indicates that the account represents a Group actor
+    public var group: Bool {
+        return _group ?? false
+    }
 
     /// Real storage of emojis.
     ///
@@ -56,8 +64,10 @@ public struct Account: Codable, Hashable {
     /// use `[Emoji]?` as storage and use `[Emoji]` as public API.
     private let _emojis: [Emoji]?
     private let _fields: [Field]?
+    private let _bot: Bool?
+    private let _group: Bool?
 
-    public init(id: String, username: String, acct: String, displayName: String, note: String, url: String, avatar: String, avatarStatic: String, header: String, headerStatic: String, locked: Bool, createdAt: Date, followersCount: Int, followingCount: Int, statusesCount: Int, emojis: [Emoji]?, fields: [Field]) {
+    public init(id: String, username: String, acct: String, displayName: String, note: String, url: String, avatar: String, avatarStatic: String, header: String, headerStatic: String, locked: Bool, createdAt: Date, followersCount: Int, followingCount: Int, statusesCount: Int, emojis: [Emoji]?, fields: [Field], bot: Bool, group: Bool) {
         self.id = id
         self.username = username
         self.acct = acct
@@ -75,6 +85,8 @@ public struct Account: Codable, Hashable {
         self.statusesCount = statusesCount
         self._emojis = emojis
         self._fields = fields
+        self._bot = bot
+        self._group = group
     }
 
 
@@ -96,5 +108,7 @@ public struct Account: Codable, Hashable {
         case statusesCount = "statuses_count"
         case _emojis = "emojis"
         case _fields = "fields"
+        case _bot = "bot"
+        case _group = "group"
     }
 }
