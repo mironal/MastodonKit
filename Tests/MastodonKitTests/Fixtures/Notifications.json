@@ -61,7 +61,8 @@
             "reblog": null,
             "favourited": true,
             "reblogged": null,
-            "language": "fr"
+            "language": "fr",
+            "replies_count": 1
         }
     },
     {
@@ -126,7 +127,8 @@
             "reblog": null,
             "favourited": true,
             "reblogged": null,
-            "language": "fr"
+            "language": "fr",
+            "replies_count": 1
         }
     }
 ]

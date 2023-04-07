@@ -37,6 +37,7 @@
         "url": "https://mastodon.technology/@ornithocoder",
         "reblogs_count": 0,
         "favourites_count": 1,
+        "replies_count": 0,
         "favourited": true,
         "reblogged": true,
         "language": "fr"
@@ -79,6 +80,7 @@
         "url": "https://mastodon.technology/@ornithocoder",
         "reblogs_count": 0,
         "favourites_count": 1,
+        "replies_count": 0,
         "favourited": true,
         "reblogged": true,
         "language": "fr"

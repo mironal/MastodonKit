@@ -60,6 +60,7 @@
         "reblog": null,
         "favourited": true,
         "reblogged": null,
-        "language": "fr"
+        "language": "fr",
+        "replies_count": 10
     }
 }
